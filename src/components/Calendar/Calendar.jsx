@@ -1,98 +1,96 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import IconDown from "../IconDown/IconDown";
 import IconLeft from "../IconLeft/IconLeft";
 import IconRight from "../IconRight/IconRight";
 import './calendar.css';
-import { closeCalendar, openCalendar } from '../../store/slices/isCalendar/isCalendar';
 import { changeDay, changeMonth, changeYear } from '../../store/slices/calendarValue/calendarValue';
 
 const Calendar = () => {
   const dispatch = useDispatch()
   const [month, setMonth] = useState(new Date().getMonth())
   const [year, setYear] = useState(2024)
-  const isCalendar = useSelector(state => state.isCalendar)
   let arr = []
   let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  let qaniShabtiovaAmisySksum = new Date(year, month, 1).getDay();
-  let myusAmisQaniShabtiovaSksum = new Date(year, month + 1, 1).getDay()
-  let qaniOrKaEsAmsum = new Date(year, month + 1, 0).getDate();
-  let qaniOrKaAncacAmsum = new Date(year, month, 0).getDate();
+  let dayTheMonthBegins = new Date(year, month, 1).getDay();
+  let dayTheNextMonthBegins = new Date(year, month + 1, 1).getDay()
+  let daysThisMonth = new Date(year, month + 1, 0).getDate();
+  let daysLastMonth = new Date(year, month, 0).getDate();
   const generateDays = () => {
 
-    if (qaniShabtiovaAmisySksum === 0) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 0; i--) {
+    if (dayTheMonthBegins === 0) {
+      for (let i = daysLastMonth; i > daysLastMonth - 0; i--) {
         arr.push(i)
       }
       arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
+      for (let i = 1; i <= daysThisMonth; i++) {
         arr.push(i)
       }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
         arr.push(i)
       }
-    } else if (qaniShabtiovaAmisySksum === 1) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 1; i--) {
-        arr.push(i)
-      }
-      arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
-        arr.push(i)
-      }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
-        arr.push(i)
-      }
-    } else if (qaniShabtiovaAmisySksum === 2) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 2; i--) {
+    } else if (dayTheMonthBegins === 1) {
+      for (let i = daysLastMonth; i > daysLastMonth - 1; i--) {
         arr.push(i)
       }
       arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
+      for (let i = 1; i <= daysThisMonth; i++) {
         arr.push(i)
       }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
         arr.push(i)
       }
-    } else if (qaniShabtiovaAmisySksum === 3) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 3; i--) {
-        arr.push(i)
-      }
-      arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
-        arr.push(i)
-      }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
-        arr.push(i)
-      }
-    } else if (qaniShabtiovaAmisySksum === 4) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 4; i--) {
+    } else if (dayTheMonthBegins === 2) {
+      for (let i = daysLastMonth; i > daysLastMonth - 2; i--) {
         arr.push(i)
       }
       arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
+      for (let i = 1; i <= daysThisMonth; i++) {
         arr.push(i)
       }
-    } else if (qaniShabtiovaAmisySksum === 5) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 5; i--) {
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
         arr.push(i)
       }
-      arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
-        arr.push(i)
-      }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
-        arr.push(i)
-      }
-    } else if (qaniShabtiovaAmisySksum === 6) {
-      for (let i = qaniOrKaAncacAmsum; i > qaniOrKaAncacAmsum - 6; i--) {
+    } else if (dayTheMonthBegins === 3) {
+      for (let i = daysLastMonth; i > daysLastMonth - 3; i--) {
         arr.push(i)
       }
       arr.reverse()
-      for (let i = 1; i <= qaniOrKaEsAmsum; i++) {
+      for (let i = 1; i <= daysThisMonth; i++) {
         arr.push(i)
       }
-      for (let i = 1; i <= 7 - myusAmisQaniShabtiovaSksum; i++) {
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
+        arr.push(i)
+      }
+    } else if (dayTheMonthBegins === 4) {
+      for (let i = daysLastMonth; i > daysLastMonth - 4; i--) {
+        arr.push(i)
+      }
+      arr.reverse()
+      for (let i = 1; i <= daysThisMonth; i++) {
+        arr.push(i)
+      }
+    } else if (dayTheMonthBegins === 5) {
+      for (let i = daysLastMonth; i > daysLastMonth - 5; i--) {
+        arr.push(i)
+      }
+      arr.reverse()
+      for (let i = 1; i <= daysThisMonth; i++) {
+        arr.push(i)
+      }
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
+        arr.push(i)
+      }
+    } else if (dayTheMonthBegins === 6) {
+      for (let i = daysLastMonth; i > daysLastMonth - 6; i--) {
+        arr.push(i)
+      }
+      arr.reverse()
+      for (let i = 1; i <= daysThisMonth; i++) {
+        arr.push(i)
+      }
+      for (let i = 1; i <= 7 - dayTheNextMonthBegins; i++) {
         arr.push(i)
       }
     }
@@ -123,7 +121,7 @@ const Calendar = () => {
       dispatch(changeYear(year + 1))
     } else {
       setMonth(month + 1)
-      dispatch(changeMonth(month+1))
+      dispatch(changeMonth(month + 1))
     }
   }
   generateDays()

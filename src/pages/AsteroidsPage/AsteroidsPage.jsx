@@ -9,7 +9,6 @@ const AsteroidsPage = () => {
   const [isEnd, setIsEnd] = useState(false);
   const dispatch = useDispatch();
   const changeLanguage = useSelector(state => state.changeLanguage);
-  const date = useSelector(state => state.date);
   const calendarValue = useSelector(state => state.calendarValue);
   const [inpValue, setInpValue] = useState('');
 
