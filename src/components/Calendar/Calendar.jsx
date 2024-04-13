@@ -127,11 +127,6 @@ const Calendar = () => {
     }
   }
   generateDays()
-  // const changeDay = (number) =>{
-  // event.target.style.background = "blue"
-  // dispatch(closeCalendar())
-  // dispatch(changeDay(number))
-  // }
   return (
     <div className="calendar">
       <div className="calendar__header">
