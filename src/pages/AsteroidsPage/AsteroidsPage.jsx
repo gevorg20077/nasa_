@@ -1,24 +1,37 @@
-import { useState } from 'react'
-import Calendar from '../../components/Calendar/Calendar'
-import { currentDateTime } from '../../store/slices/date/date'
-import './asteroidsPage.css'
-import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react';
+import Calendar from '../../components/Calendar/Calendar';
+import { currentDateTime } from '../../store/slices/date/date';
+import './asteroidsPage.css';
+import { useSelector, useDispatch } from 'react-redux';
+
 const AsteroidsPage = () => {
-  const [isStart, setIsStart] = useState(false)
-  const [isEnd, setIsEnd] = useState(false)
-  const dispatch = useDispatch()
-  dispatch(currentDateTime())
-  const changeLanguage = useSelector(state => state.changeLanguage)
-  const date = useSelector(state => state.date)
+  const [isStart, setIsStart] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+  const dispatch = useDispatch();
+  const changeLanguage = useSelector(state => state.changeLanguage);
+  const date = useSelector(state => state.date);
+  const calendarValue = useSelector(state => state.calendarValue);
+  const [inpValue, setInpValue] = useState('');
+
+  useEffect(() => {
+    dispatch(currentDateTime());
+  }, [dispatch]);
+
   const calendarStart = () => {
-    setIsStart(true)
-    setIsEnd(false)
-  }
+    setIsStart(true);
+    setIsEnd(false);
+  };
+
   const calendarEnd = () => {
-    setIsEnd(true)
-    setIsStart(false)
-  }
-  const calendarValue = useSelector(state => state.calendarValue)
+    setIsEnd(true);
+    setIsStart(false);
+  };
+  useEffect(() => {
+    if (calendarValue) {
+      setInpValue(`${calendarValue.day}/${calendarValue.month}/${calendarValue.year}`);
+    }
+  }, [calendarValue]);
+
   return (
     <div className="asteroidsPage">
       <h3 className='asteroidsPage__text'>{changeLanguage.russian ? "Поиск астероидов по дате их наибольшего сближения с Землей" : changeLanguage.armenian ? "Փնտրել Աստերոիդներ Իրենց Հետագծով Երկրանգնդին Ամենամոտ Գտնվելու Օրով" : "Search for Asteroids based on their closest approach date to Earth"}</h3>
@@ -26,18 +39,18 @@ const AsteroidsPage = () => {
       <div className="asteroidsPage__date">
         <div className="asteroidsPage__start_date">
           <p>{changeLanguage.russian ? "Начальная Дата:" : changeLanguage.armenian ? "Սկզբնական Ամսաթիվ:" : "Start Date:"}</p>
-          <input type="text" defaultValue={calendarValue.day + "/" + calendarValue.month + "/" + calendarValue.year} onFocus={calendarStart} />
+          <input type="text" value={inpValue} onChange={(e) => setInpValue(e.target.value)} onFocus={calendarStart} />
           {isStart && <Calendar />}
         </div>
         <div className="asteroidsPage__end_date">
           <p>{changeLanguage.russian ? "Конечная Дата:" : changeLanguage.armenian ? "Վերջնական Ամսաթիվ:" : "End Date:"}</p>
-          <input type="text" defaultValue={calendarValue.day + "/" + calendarValue.month + "/" + calendarValue.year} onFocus={calendarEnd} />
+          <input type="text" value={inpValue} onChange={(e) => setInpValue(e.target.value)} onFocus={calendarEnd} />
           {isEnd && <Calendar />}
           <button>{changeLanguage.russian ? "Поиск" : changeLanguage.armenian ? "Փնտրել" : "Search"}</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AsteroidsPage
+export default AsteroidsPage;

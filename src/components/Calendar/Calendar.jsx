@@ -124,7 +124,6 @@ const Calendar = () => {
     } else {
       setMonth(month + 1)
       dispatch(changeMonth(month+1))
-      console.log(month);
     }
   }
   generateDays()
