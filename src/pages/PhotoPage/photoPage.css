@@ -1,0 +1,24 @@
+.photoPage{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  margin-top: 4px;
+  height: 100vh;
+}
+
+.photoPage input{
+  width: 140px;
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.photoPage button{
+  padding: 2px 12px;
+  margin: 0 auto;
+  background-color: #0b0b65;
+  color: white;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 200;
+}

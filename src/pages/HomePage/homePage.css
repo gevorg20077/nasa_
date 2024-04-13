@@ -1,0 +1,14 @@
+.home{
+  margin-top: 1px;
+  background-image: url(/src/Images/backgroundNasa.png);
+  height: 608px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home p{
+  font-size: 80px;
+  color: white;
+  font-weight: 700;
+}
