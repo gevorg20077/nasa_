@@ -42,6 +42,7 @@
 
 .menu__list li{
   text-align: center;
+  position: relative;
 }
 
 .menu__list li a {
@@ -52,7 +53,7 @@
   position: relative;
 }
 
-.menu__list li a::after {
+.menu__list li::after {
   content: '';
   position: absolute;
   width: 0;
@@ -63,7 +64,7 @@
   transition: .3s all;
 }
 
-.menu__list li a:hover::after {
+.menu__list li:hover::after {
   width: 100%;
 }
 
