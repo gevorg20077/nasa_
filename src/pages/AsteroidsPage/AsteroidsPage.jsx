@@ -45,8 +45,8 @@ const AsteroidsPage = () => {
           <p>{changeLanguage.russian ? "Конечная Дата:" : changeLanguage.armenian ? "Վերջնական Ամսաթիվ:" : "End Date:"}</p>
           <input type="text" value={inpValue} onChange={(e) => setInpValue(e.target.value)} onFocus={calendarEnd} />
           {isEnd && <Calendar />}
-          <button>{changeLanguage.russian ? "Поиск" : changeLanguage.armenian ? "Փնտրել" : "Search"}</button>
         </div>
+        <button className='asteroidsPage__button'>{changeLanguage.russian ? "Поиск" : changeLanguage.armenian ? "Փնտրել" : "Search"}</button>
       </div>
     </div>
   );

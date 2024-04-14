@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IconDown from "../IconDown/IconDown";
 import IconLeft from "../IconLeft/IconLeft";
 import IconRight from "../IconRight/IconRight";
@@ -8,21 +8,20 @@ import { changeDay, changeMonth, changeYear } from '../../store/slices/calendarV
 
 const Calendar = () => {
   const dispatch = useDispatch()
-  const [month, setMonth] = useState(new Date().getMonth())
+  const [month, setMonth] = useState(new Date().getMonth() + 1)
   const [year, setYear] = useState(2024)
+  const calendarValue = useSelector(state => state.calendarValue)
   let arr = []
-  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   let dayTheMonthBegins = new Date(year, month, 1).getDay();
   let dayTheNextMonthBegins = new Date(year, month + 1, 1).getDay()
   let daysThisMonth = new Date(year, month + 1, 0).getDate();
   let daysLastMonth = new Date(year, month, 0).getDate();
+  console.log(calendarValue.day);
   const generateDays = () => {
 
     if (dayTheMonthBegins === 0) {
-      for (let i = daysLastMonth; i > daysLastMonth - 0; i--) {
-        arr.push(i)
-      }
       arr.reverse()
       for (let i = 1; i <= daysThisMonth; i++) {
         arr.push(i)
@@ -147,7 +146,18 @@ const Calendar = () => {
         </ul>
       </div>
       <ul className="calendar__body">
-        {arr.map((number, i) => <li onClick={() => dispatch(changeDay(number))} key={i}>{number}</li>)}
+        {arr.map((number, i) => (
+          <li
+            style={{
+              background: number === calendarValue.day ? "#216ba5" : "white",
+              color: number === calendarValue.day ? "white" : "black"
+            }}
+            onClick={() => dispatch(changeDay(number))}
+            key={i}
+          >
+            {number}
+          </li>
+        ))}
       </ul>
     </div>
   );

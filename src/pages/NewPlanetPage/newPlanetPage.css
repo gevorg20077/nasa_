@@ -6,7 +6,7 @@
 .newPlanetPage__form{
   display: flex;
   flex-direction: column;
-  width: 420px;
+  width: 40%;
   margin: 0 auto;
   gap: 15px;
 }
