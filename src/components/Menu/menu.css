@@ -40,6 +40,10 @@
   height: 80px;
 }
 
+.menu__list li{
+  text-align: center;
+}
+
 .menu__list li a {
   font-size: 25px;
   text-decoration: none;
